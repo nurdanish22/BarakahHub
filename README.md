@@ -234,8 +234,7 @@ lib/
 
 ## 10. Flowchart
 
-> *Note: Place your architecture or app flowchart image file here using the format below:*
-> `![App Flowchart](path/to/your/flowchart-image.png)`
+![App Flowchart](flowchart.png)
 
 ---
 
