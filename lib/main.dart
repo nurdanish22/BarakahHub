@@ -1,47 +1,58 @@
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'package:firebase_messaging/firebase_messaging.dart';
+import 'package:provider/provider.dart';
 import 'providers/auth_provider.dart';
-import 'screens/auth/login_screen.dart';
+import 'providers/event_provider.dart';
+import 'providers/volunteer_provider.dart';
+import 'providers/announcement_provider.dart';
+import 'screens/splash_screen.dart';
+import 'firebase_options.dart';
+import 'services/notification_service.dart';
+import 'utils/app_navigator.dart';
+
+@pragma('vm:entry-point')
+Future<void> _firebaseMessagingBackgroundHandler(RemoteMessage message) async {
+  await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
+  NotificationService.handleBackgroundMessage(message);
+}
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  
-  // You need the options block specifically for Chrome/Web testing!
   await Firebase.initializeApp(
-      options: const FirebaseOptions(
-        apiKey: "AIzaSyCOU_c_nhtsFKjzO_BmpqKPTX_O6cvFV2k",
-        appId: "1:733722559391:web:40a6614071577257bfb3aa",
-        messagingSenderId: "733722559391",
-        projectId: "barakahhub-ef014",
-        authDomain: "barakahhub-ef014.firebaseapp.com",
-        storageBucket: "barakahhub-ef014.firebasestorage.app",
-      ),
-    );
-
+    options: DefaultFirebaseOptions.currentPlatform,
+  );
+  FirebaseMessaging.onBackgroundMessage(_firebaseMessagingBackgroundHandler);
   runApp(const MyApp());
 }
 
 class MyApp extends StatelessWidget {
-  const MyApp({super.key});
+  const MyApp({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return MultiProvider(
       providers: [
         ChangeNotifierProvider(create: (_) => AppAuthProvider()),
+        ChangeNotifierProvider(create: (_) => EventProvider()),
+        ChangeNotifierProvider(create: (_) => VolunteerProvider()),
+        ChangeNotifierProvider(create: (_) => AnnouncementProvider()),
       ],
       child: MaterialApp(
+        navigatorKey: navigatorKey,
         title: 'BarakahHub',
         debugShowCheckedModeBanner: false,
         theme: ThemeData(
+          primaryColor: const Color(0xFF1A6B3C),
+          colorScheme: ColorScheme.fromSeed(seedColor: const Color(0xFF1A6B3C)),
           useMaterial3: true,
-          colorScheme: ColorScheme.fromSeed(
-            seedColor: const Color(0xFF1B5E20), // A clean Islamic emerald green theme
+          appBarTheme: const AppBarTheme(
+            backgroundColor: Color(0xFF1A6B3C),
+            foregroundColor: Colors.white,
+            elevation: 0,
           ),
         ),
-        // Temporarily pointing to LoginScreen which we will build next
-        home: const LoginScreen(), 
+        home: const SplashScreen(),
       ),
     );
   }

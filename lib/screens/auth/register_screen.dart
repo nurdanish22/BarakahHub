@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import '../../providers/auth_provider.dart';
+import '../../services/notification_service.dart';
+import '../main_screen.dart';
 
 class RegisterScreen extends StatefulWidget {
   const RegisterScreen({super.key});
@@ -37,11 +39,13 @@ class _RegisterScreenState extends State<RegisterScreen> {
           _phoneController.text.trim(),
         );
 
-        if (success) {
-          ScaffoldMessenger.of(context).showSnackBar(
-            const SnackBar(content: Text('Registration successful! Account created.')),
+        if (success && mounted) {
+          NotificationService().initialize(
+              userId: authProvider.currentUser?.userId);
+          Navigator.of(context).pushAndRemoveUntil(
+            MaterialPageRoute(builder: (_) => const MainScreen()),
+            (route) => false,
           );
-          Navigator.pop(context);
         } else {
           // Fallback if it returns false without an error exception
           ScaffoldMessenger.of(context).showSnackBar(

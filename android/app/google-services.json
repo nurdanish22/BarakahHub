@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "364681850525",
+    "project_id": "barakahhub-d803b",
+    "storage_bucket": "barakahhub-d803b.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:364681850525:android:3f99a42e7b3ddf517c6e74",
+        "android_client_info": {
+          "package_name": "com.example.barakah_hub"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCOKYLsX6PUUFjf_rKroJttC_Y0SEvGe4g"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

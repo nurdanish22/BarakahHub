@@ -70,7 +70,36 @@ class AuthService {
     }
   }
 
-  // 4. Log Out
+  // 4. Update User Profile
+  Future<void> updateUserProfile({
+    required String userId,
+    required String name,
+    required String phone,
+    String location = '',
+    String bio = '',
+  }) async {
+    try {
+      await _db.collection('users').doc(userId).update({
+        'name': name,
+        'phone': phone,
+        'location': location,
+        'bio': bio,
+      });
+    } catch (e) {
+      throw Exception('Failed to update profile: $e');
+    }
+  }
+
+  // 5. Promote user to Admin role
+  Future<void> promoteToAdmin(String userId) async {
+    try {
+      await _db.collection('users').doc(userId).update({'role': 'Admin'});
+    } catch (e) {
+      throw Exception('Failed to promote user: $e');
+    }
+  }
+
+  // 5. Log Out
   Future<void> signOut() async {
     try {
       await _auth.signOut();

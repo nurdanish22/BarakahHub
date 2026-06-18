@@ -4,6 +4,8 @@ class UserModel {
   final String email;
   final String phone;
   final String role;
+  final String location;
+  final String bio;
 
   UserModel({
     required this.userId,
@@ -11,20 +13,24 @@ class UserModel {
     required this.email,
     required this.phone,
     required this.role,
+    this.location = '',
+    this.bio = '',
   });
 
-  // Convert a Firestore Document/Map into a UserModel object
+  bool get isAdmin => role == 'Admin';
+
   factory UserModel.fromMap(Map<String, dynamic> map) {
     return UserModel(
       userId: map['userId'] ?? '',
       name: map['name'] ?? '',
       email: map['email'] ?? '',
       phone: map['phone'] ?? '',
-      role: map['role'] ?? 'Community Member', // Default role matching your target users
+      role: map['role'] ?? 'Community Member',
+      location: map['location'] ?? '',
+      bio: map['bio'] ?? '',
     );
   }
 
-  // Convert a UserModel object into a Map to save into Firestore
   Map<String, dynamic> toMap() {
     return {
       'userId': userId,
@@ -32,6 +38,8 @@ class UserModel {
       'email': email,
       'phone': phone,
       'role': role,
+      'location': location,
+      'bio': bio,
     };
   }
 }

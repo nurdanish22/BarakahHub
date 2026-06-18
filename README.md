@@ -1,4 +1,4 @@
-# barakahhub
+# barakah_hub
 
 A new Flutter project.
 
