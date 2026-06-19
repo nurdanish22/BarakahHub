@@ -1,4 +1,4 @@
-# BarakahHub — Member 2: Event Management
+# BarakahHub — Member 2: Event Management - Ilham Iqbal Ali bin Md Ghazali 2229195
 
 > **Group 6 | INFO 4335 SEC 1 | Sem 2, 2025/2026**
 
