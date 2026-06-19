@@ -20,22 +20,17 @@ This folder contains all files owned by **Member 1** for the BarakahHub Flutter 
 lib/
 ├── models/
 │   └── user_model.dart             ← UserModel definitions
-│
 ├── services/
 │   └── auth_service.dart           ← All Firebase Auth + Firestore reads for users
-│
 ├── providers/
 │   └── auth_provider.dart          ← State management (Provider pattern) for session
-│
 ├── screens/
 │   ├── auth/
 │   │   ├── login_screen.dart           ← User login interface
 │   │   ├── register_screen.dart        ← User account creation interface
 │   │   └── forgot_password_screen.dart ← Password recovery interface
-│   │
 │   └── profile/
 │       └── profile_screen.dart         ← Account details & profile overview
-│
 └── main.dart                       ← App initialization, Firebase config & root router
 
 ---
