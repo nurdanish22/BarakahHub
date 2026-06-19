@@ -19,6 +19,7 @@ This folder contains all files owned by **Member 1** for the BarakahHub Flutter 
 
 ## File Structure
 
+```
 lib/
 ├── models/
 │   └── user_model.dart             ← UserModel definitions
@@ -34,6 +35,7 @@ lib/
 │   └── profile/
 │       └── profile_screen.dart         ← Account details & profile overview
 └── main.dart                       ← App initialization, Firebase config & root router
+```
 
 ---
 
