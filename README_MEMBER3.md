@@ -7,7 +7,7 @@ This document outlines the design, backend structure, and engineering implementa
 
 ---
 
-## 📋 Module Overview & Scope
+## Module Overview & Scope
 
 The **Volunteer Management Module** serves as the core community service engine of BarakahHub. Its purpose is to connect active community members with localized charity work, mosque maintenance, and youth programs.
 
@@ -15,7 +15,7 @@ As the technical lead for this module, I built a highly responsive, secure, and 
 
 ---
 
-## 🔥 Managed Firestore Collections
+## Managed Firestore Collections
 
 To ensure optimal performance and strict data separation, my module owns and operates two specific top-level collections within Cloud Firestore:
 
@@ -47,7 +47,7 @@ Acts as a secure transactional ledger mapping which community members have signe
 
 ---
 
-## 📂 Codebase File Architecture
+## Codebase File Architecture
 
 I implemented this module using a clean **Data-Service-Provider-UI** structural pattern to ensure absolute decoupling and maintainability.
 
@@ -68,7 +68,7 @@ lib/
 
 ---
 
-## 🛠️ Key Functionalities & Engineering Implementations
+## Key Functionalities & Engineering Implementations
 
 ### Object Mapping Integrity (`volunteer_model.dart`)
 
@@ -92,7 +92,7 @@ lib/
 
 ---
 
-## 🔒 Data Security: Atomic Concurrency Protection
+## Data Security: Atomic Concurrency Protection
 
 To solve the classic development risk where two active users click the last remaining slot at the exact same millisecond—causing counting errors—I designed the enrollment logic around a strict backend **Firestore Write Batch**.
 
@@ -123,7 +123,7 @@ await batch.commit();
 
 ---
 
-## 📝 Team Integration Guidelines
+## Team Integration Guidelines
 
 * **Project Requirements**: Relies heavily on the `provider`, `cloud_firestore`, and `intl` packages within your project.
 * **Session Interlocks**: The detail screen targets active identities by requesting data pointers through `context.read<AppAuthProvider>().currentUser?.userId`. Ensure an active session state exists before initializing navigation.
