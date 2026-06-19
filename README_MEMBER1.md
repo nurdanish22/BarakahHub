@@ -1,6 +1,6 @@
 # BarakahHub — Member 1: Authentication & Profile Management
 
-> **Group 6 | INFO 4335 SEC 1 | Sem 2, 2025/2026**[cite: 1]
+> **Group 6 | INFO 4335 SEC 1 | Sem 2, 2025/2026**
 
 This folder contains all files owned by **Member 1** for the BarakahHub Flutter project, establishing the core authentication framework, state management, and user profile ecosystem.
 
@@ -93,7 +93,7 @@ To link to the user profile screen from the sidebar or dashboard[cite: 1]:
 ## Dependencies to Add
 
 See pubspec_dependencies.yaml for the exact version constraints[cite: 1].
-Key packages: `provider`, `firebase_core`, `firebase_auth`, `cloud_firestore`[cite: 1].
+Key packages: `provider`, `firebase_core`, `firebase_auth`, `cloud_firestore`.
 
 Run `flutter pub get` after updating your dependencies[cite: 1].
 
