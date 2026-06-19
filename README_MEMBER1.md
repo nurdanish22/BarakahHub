@@ -1,4 +1,4 @@
-# BarakahHub — Member 1: Authentication & Profile Management
+# BarakahHub — Member 1 : Muhammad Hanif Faiq Bin Mazlan 2221773 : Authentication & Profile Management
 
 > **Group 6 | INFO 4335 SEC 1 | Sem 2, 2025/2026**
 
