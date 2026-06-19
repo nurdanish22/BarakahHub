@@ -1,6 +1,6 @@
 # BarakahHub — Member 1: Authentication & Profile Management
 
-> **Group 6 | INFO 4335 SEC 1 | Sem 2, 2025/2026**
+> **Group 6 | INFO 4335 SEC 1 | Sem 2, 2025/2026**[cite: 1]
 
 This folder contains all files owned by **Member 1** for the BarakahHub Flutter project, establishing the core authentication framework, state management, and user profile ecosystem.
 
@@ -16,6 +16,8 @@ This folder contains all files owned by **Member 1** for the BarakahHub Flutter 
 - User Profile View & Data Retrieval
 
 ---
+
+## File Structure
 
 lib/
 ├── models/
@@ -51,39 +53,52 @@ lib/
 ## How to Wire Up (Integration Guide)
 
 ### 1. Register the provider in `main.dart`
-Wrap your application root with the `AuthProvider` so session state is accessible globally:
-```dart
-MultiProvider(
-  providers: [
-    ChangeNotifierProvider(create: (_) => AuthProvider()),
-    // ... other providers
-  ],
-  child: const MyApp(),
-)
+Wrap your application root with the `AuthProvider` so session state is accessible globally[cite: 1]:
 
-2. Guard screens or check authentication status
+  MultiProvider(
+    providers: [
+      ChangeNotifierProvider(create: (_) => AuthProvider()),
+    ],
+    child: const MyApp(),
+  )
+
+### 2. Guard screens or check authentication status
 Other members can check if a user is securely logged in before showing private screens:
 
-final authProvider = context.read<AuthProvider>();
-if (authProvider.isAuthenticated) {
-  // Proceed to secure screen
-}
+  final authProvider = context.read<AuthProvider>();
+  if (authProvider.isAuthenticated) {
+    // Proceed to secure screen
+  }
 
-3. Retrieve the active User Profile or UID
-Replace any placeholder user IDs in your modules with the live authenticated user data:
+### 3. Retrieve the active User Profile or UID
+Replace any placeholder user IDs in your modules with the live authenticated user data[cite: 1]:
 
-// Get the current UID string
-String currentUserId = context.read<AuthProvider>().currentUser?.uid ?? '';
+  // Get the current UID string
+  String currentUserId = context.read<AuthProvider>().currentUser?.uid ?? '';
 
-// Get full user model details
-UserModel? userProfile = context.read<AuthProvider>().userModel;
+  // Get full user model details
+  UserModel? userProfile = context.read<AuthProvider>().userModel;
 
-4. Direct Navigation to Profile
-To link to the user profile screen from the sidebar or dashboard:
+### 4. Direct Navigation to Profile
+To link to the user profile screen from the sidebar or dashboard[cite: 1]:
 
-Navigator.push(context, MaterialPageRoute(
-  builder: (_) => const ProfileScreen(),
-));
+  Navigator.push(context, MaterialPageRoute(
+    builder: (_) => const ProfileScreen(),
+  ));
 
-Dependencies to AddSee pubspec_dependencies.yaml for the exact version constraints.
-Key packages: provider, firebase_core, firebase_auth, cloud_firestore[cite: 1].  Run flutter pub get after updating your dependencies
+---
+
+## Dependencies to Add
+
+See pubspec_dependencies.yaml for the exact version constraints[cite: 1].
+Key packages: `provider`, `firebase_core`, `firebase_auth`, `cloud_firestore`[cite: 1].
+
+Run `flutter pub get` after updating your dependencies[cite: 1].
+
+---
+
+## Notes
+
+- **State Persistence**: The `AuthProvider` continuously listens to the Firebase Auth state stream. If a user restarts the application, their session is automatically remembered and restored.
+- **Cross-Platform Synchronization**: Web environments connect using the credentials inside `firebase_options.dart`, while Android platforms actively read from the native configurations inside `android/app/google-services.json`.
+- **Validation Safety**: Email, login forms, and password reset interfaces include built-in structural regex validators to ensure clean inputs are handled before hitting backend servers.
